@@ -1,0 +1,7 @@
+<div cdkDropList *ngIf="clips" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start"
+  (cdkDropListDropped)="dropped($event)">
+  <ng-container *ngFor="let clip of clips">
+    <app-clip [clip]="clip" fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%"
+      cdkDrag></app-clip>
+  </ng-container>
+</div>
