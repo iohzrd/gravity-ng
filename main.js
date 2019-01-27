@@ -118,8 +118,6 @@ app.on('ready', () => {
   });
 
   ipcMain.on('saveConfig', (event, configRoot) => {
-    console.log(event)
-    console.log(configRoot)
     config.set(configRoot);
   });
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { ClipInterface } from './clip/clip.component';
 
@@ -20,5 +21,14 @@ export class AppComponent {
       this.clips = configRoot.clips;
     });
   }
-  // this._electronService.ipcRenderer.sendSync('saveConfigs', this.config);
+
+  dropped(event: CdkDragDrop<string[]>) {
+    moveItemInArray(
+      this.clips,
+      event.previousIndex,
+      event.currentIndex
+    );
+    this._electronService.ipcRenderer.send('saveConfig', { 'clips': this.clips });
+  }
+
 }

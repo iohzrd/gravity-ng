@@ -8,7 +8,6 @@ import { NgxElectronModule } from 'ngx-electron';
 
 import { AppComponent } from './app.component';
 import { ClipComponent } from './clip/clip.component';
-import { ClipGridComponent } from './clip-grid/clip-grid.component';
 import { MaterialModule } from './material';
 
 
@@ -16,7 +15,6 @@ import { MaterialModule } from './material';
   declarations: [
     AppComponent,
     ClipComponent,
-    ClipGridComponent,
   ],
   imports: [
     FlexLayoutModule,
