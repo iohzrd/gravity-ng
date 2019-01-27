@@ -1,5 +1,5 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -10,20 +10,18 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class ClipGridComponent implements OnInit {
   @Input() clips;
 
+  constructor() {
+  }
+
   dropped(event: CdkDragDrop<string[]>) {
     moveItemInArray(
       this.clips,
       event.previousIndex,
       event.currentIndex
     );
-  }
-
-  constructor() {
+    console.log('dropped');
   }
 
   ngOnInit() {
   }
-
-  // ngOnChanges() {
-  // }
 }

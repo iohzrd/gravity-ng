@@ -16,6 +16,11 @@ export interface ClipInterface {
 export class ClipComponent implements OnInit {
   @Input() clip: ClipInterface;
 
+  // progress bar
+  color = 'secondary';
+  mode = 'determinate';
+  value = 0;
+
   playPause(uid) {
     const element: any = document.getElementById(`audio-${uid}`);
     if (element.paused) {
@@ -25,12 +30,24 @@ export class ClipComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  reset(uid) {
+    const element: any = document.getElementById(`audio-${uid}`);
+    element.pause();
+    element.currentTime = 0;
+  }
+
+  updateProgress(uid) {
+    const audio_element: any = document.getElementById(`audio-${uid}`);
+    const percent = Math.floor((audio_element.currentTime / audio_element.duration) * 100);
+    if (percent === 100) {
+      this.value = 0;
+    } else {
+      this.value = percent;
+    }
+    console.log(this.value);
+  }
 
   ngOnInit() {
 
   }
-
-
-
 }

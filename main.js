@@ -117,6 +117,12 @@ app.on('ready', () => {
     win.webContents.reloadIgnoringCache();
   });
 
+  ipcMain.on('saveConfig', (event, configRoot) => {
+    console.log(event)
+    console.log(configRoot)
+    config.set(configRoot);
+  });
+
   ipcMain.on('saveFile', (event, arg) => {
     saveFile(arg);
   });

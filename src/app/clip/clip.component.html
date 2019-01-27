@@ -1,19 +1,17 @@
 <div *ngIf="clip">
-  <mat-card class="example-card">
+  <mat-card>
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar></div>
       <mat-card-title>{{clip.name}}</mat-card-title>
     </mat-card-header>
-    <audio id="audio-{{clip.uid}}" src="{{clip.path}}">play</audio>
     <mat-card-content>
-      <h2 class="example-h2">Result</h2>
-      <section class="example-section">
-        <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
-        </mat-progress-bar>
+      <section>
+        <mat-progress-bar [color]="color" mode="determinate" [value]="value"></mat-progress-bar>
       </section>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)=playPause(clip.uid)>PLAY</button>
+      <audio id="audio-{{clip.uid}}" src="{{clip.path}}" (timeupdate)=updateProgress(clip.uid)>play</audio>
+      <button mat-button (click)=playPause(clip.uid) (dblclick)=reset(clip.uid)>PLAY</button>
     </mat-card-actions>
   </mat-card>
 </div>
