@@ -1,7 +1,9 @@
 <div style="text-align:center">
+
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>{{ title }}</span>
+      <button mat-raised-button (click)=openBottomSheet()>Import clip</button>
     </mat-toolbar-row>
   </mat-toolbar>
 
@@ -12,4 +14,5 @@
         cdkDrag></app-clip>
     </ng-container>
   </div>
+
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -15,8 +15,8 @@ export class AppComponent {
   ];
   title = 'gravity';
 
-  constructor(private _electronService: ElectronService) {
-    this._electronService.ipcRenderer.on('config', (event, configRoot) => {
+  constructor(private electronService: ElectronService) {
+    this.electronService.ipcRenderer.on('config', (event, configRoot) => {
       console.log(configRoot.clips);
       this.clips = configRoot.clips;
     });
@@ -28,7 +28,7 @@ export class AppComponent {
       event.previousIndex,
       event.currentIndex
     );
-    this._electronService.ipcRenderer.send('saveConfig', { 'clips': this.clips });
+    this.electronService.ipcRenderer.send('saveConfig', { 'clips': this.clips });
   }
 
 }
