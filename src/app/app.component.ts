@@ -17,7 +17,6 @@ export class AppComponent {
 
   constructor(private electronService: ElectronService) {
     this.electronService.ipcRenderer.on('config', (event, configRoot) => {
-      console.log(configRoot.clips);
       this.clips = configRoot.clips;
     });
   }
@@ -30,5 +29,4 @@ export class AppComponent {
     );
     this.electronService.ipcRenderer.send('saveConfig', { 'clips': this.clips });
   }
-
 }

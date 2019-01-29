@@ -7,7 +7,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxElectronModule } from 'ngx-electron';
 
 import { AppComponent } from './app.component';
-import { ClipComponent } from './clip/clip.component';
+import { ClipComponent, } from './clip/clip.component';
+import { ClipSettingsComponent, ClipSettingsDialogComponent } from './clip/clip-settings/clip-settings.component';
+import { ImportClipComponent, ImportClipSheetComponent } from './import-clip/import-clip.component';
 import { MaterialModule } from './material';
 
 
@@ -15,6 +17,16 @@ import { MaterialModule } from './material';
   declarations: [
     AppComponent,
     ClipComponent,
+    ClipSettingsComponent,
+    ClipSettingsDialogComponent,
+    ImportClipComponent,
+    ImportClipSheetComponent,
+  ],
+  entryComponents: [
+    ClipSettingsComponent,
+    ClipSettingsDialogComponent,
+    ImportClipComponent,
+    ImportClipSheetComponent
   ],
   imports: [
     FlexLayoutModule,

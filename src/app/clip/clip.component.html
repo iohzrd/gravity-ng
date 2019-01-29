@@ -1,8 +1,11 @@
 <div *ngIf="clip">
   <mat-card>
     <mat-card-header>
-      <div mat-card-avatar></div>
       <mat-card-title>{{clip.name}}</mat-card-title>
+      <button mat-icon-button color="accent">
+        <mat-icon>open_with</mat-icon>
+      </button>
+      <app-clip-settings [clip]="clip"></app-clip-settings>
     </mat-card-header>
     <mat-card-content>
       <section>

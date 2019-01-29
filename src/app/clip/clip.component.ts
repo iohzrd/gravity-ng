@@ -15,11 +15,12 @@ export interface ClipInterface {
 })
 export class ClipComponent implements OnInit {
   @Input() clip: ClipInterface;
-
   // progress bar
   color = 'secondary';
   mode = 'determinate';
   value = 0;
+
+  constructor() { }
 
   playPause(uid) {
     const element: any = document.getElementById(`audio-${uid}`);
@@ -44,7 +45,6 @@ export class ClipComponent implements OnInit {
     } else {
       this.value = percent;
     }
-    console.log(this.value);
   }
 
   ngOnInit() {
