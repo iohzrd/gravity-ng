@@ -1,20 +1,18 @@
-<div *ngIf="clip">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{clip.name}}</mat-card-title>
-      <button mat-icon-button color="accent">
-        <mat-icon>open_with</mat-icon>
-      </button>
-      <app-clip-settings [clip]="clip"></app-clip-settings>
-    </mat-card-header>
-    <mat-card-content>
-      <section>
-        <mat-progress-bar [color]="color" mode="determinate" [value]="value"></mat-progress-bar>
-      </section>
-    </mat-card-content>
-    <mat-card-actions>
-      <audio id="audio-{{clip.uid}}" src="{{clip.path}}" (timeupdate)=updateProgress(clip.uid)>play</audio>
-      <button mat-button (click)=playPause(clip.uid) (dblclick)=reset(clip.uid)>PLAY</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<mat-card>
+  <mat-card-header>
+    <div class="clip-handle" cdkDragHandle>
+      <mat-icon>open_with</mat-icon>
+    </div>
+    <mat-card-title>{{clip.name}}</mat-card-title>
+    <!-- <app-clip-settings [clip]="clip"></app-clip-settings> -->
+  </mat-card-header>
+  <mat-card-content>
+    <section>
+      <mat-progress-bar [color]="color" mode="determinate" [value]="value"></mat-progress-bar>
+    </section>
+  </mat-card-content>
+  <mat-card-actions>
+    <audio id="audio-{{clip.uid}}" src="{{clip.path}}" (timeupdate)=updateProgress(clip.uid)>play</audio>
+    <button mat-button (click)=playPause(clip.uid) (dblclick)=reset(clip.uid)>PLAY</button>
+  </mat-card-actions>
+</mat-card>

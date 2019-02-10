@@ -3,11 +3,20 @@
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 // @import "~@angular/material/prebuilt-themes/purple-green.css";
 
+
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
 	font-weight: 200;
 	src: url(./../node_modules/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2');
+}
+
+html, body { height: 100%; }
+
+body {
+	background-color: black;
+	margin: 0; 
+	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .material-icons {
@@ -25,6 +34,3 @@
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

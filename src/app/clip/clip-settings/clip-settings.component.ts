@@ -17,22 +17,29 @@ export interface ClipInterface {
   styleUrls: ['./clip-settings.component.scss']
 })
 export class ClipSettingsComponent {
-  @Input() @Output() clip: ClipInterface;
+  clip: ClipInterface;
 
   constructor(public dialog: MatDialog) { }
 
   openClipSettings(): void {
     const dialogRef = this.dialog.open(ClipSettingsDialogComponent, {
       width: '500px',
-      data: { name: this.clip.name, path: this.clip.path, rate: this.clip.rate, uid: this.clip.uid, volume: this.clip.volume }
+      data: {
+        name: this.clip.name, path: this.clip.path, rate: this.clip.rate,
+        uid: this.clip.uid, volume: this.clip.volume
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
-      this.clip.name = result.name;
-      this.clip.rate = result.rate;
-      this.clip.volume = result.volume;
+      // this.clip.name = result;
+      // this.clip.name = result.name;
+      // console.log(result.name);
+      // this.clip.rate = result.rate;
+      // console.log(result.rate);
+      // this.clip.volume = result.volume;
+      // console.log(result.volume);
     });
   }
 }

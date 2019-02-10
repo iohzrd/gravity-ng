@@ -30,11 +30,12 @@ $ npm run build-win
 - [x] Retain clip order
 - [x] Implement per-clip name/volume/rate/delete/etc controls
 - [x] Add clip directly from youtube links
-- [x] crop imported youtube links from timestamp
-- [ ] Add master volume controls?
-- [ ] Implement search, per-clip CSV tags?
+- [x] Crop imported youtube links from timestamp
+- [x] Implement search / filtering
+- [ ] Per-clip searchable tags?
 - [ ] Per-clip color?
 - [ ] Per-clip images?
+- [ ] Add master volume controls?
 - [ ] Themes?
 - [ ] multi-clip playable vs single clip only toggle?
 - - [ ] queue for clips clicked in single mode?

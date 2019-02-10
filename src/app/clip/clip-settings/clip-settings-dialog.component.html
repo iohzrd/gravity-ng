@@ -1,14 +1,15 @@
 <h1 mat-dialog-title>{{data.name}}</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Name" value="{{data.name}}" [value]="data.name">
+    <input matInput placeholder="Name">
     <h3>Rate</h3>
-    <mat-slider matInput placeholder="Rate" min="0.5" max="2" step="0.01" value="{{data.rate}}" [value]="data.rate">Rate</mat-slider>
+    <mat-slider matInput placeholder=" Rate" min="0.5" max="2" step="0.01" value="{{data.rate}}">Rate</mat-slider>
     <h3>Volume</h3>
-    <mat-slider matInput placeholder="Volume" min="0" max="1" step="0.01" value="{{data.volume}}" [value]="data.volume">Volume</mat-slider>
+    <mat-slider matInput placeholder="Volume" min="0" max="1" step="0.01" value="{{data.volume}}">Volume</mat-slider>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button>
+  <!-- <button mat-button [mat-dialog-close]="{name: data.name, rate: data.rate, volume: data.volume}" cdkFocusInitial>Ok</button> -->
 </div>

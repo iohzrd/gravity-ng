@@ -1,21 +1,23 @@
-<mat-nav-list>
-    <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Keep</span>
-        <span mat-line>Add to a note</span>
-    </a>
+<div class="example-container">
 
-    <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Docs</span>
-        <span mat-line>Embed in a document</span>
-    </a>
+    <form class="example-container" [formGroup]="options">
+        <div>
+            <mat-radio-group formControlName="disableOther">
+                <br>
+                <mat-radio-button value="true">Import local file(s)</mat-radio-button>
+                <br>
+                <mat-radio-button value="false">Download</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </form>
 
-    <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Plus</span>
-        <span mat-line>Share with your friends</span>
-    </a>
+    <br>
 
-    <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-        <span mat-line>Google Hangouts</span>
-        <span mat-line>Show to your coworkers</span>
-    </a>
-</mat-nav-list>
+    <mat-form-field [hideRequiredMarker]="options.value.disableOther">
+        <button mat-raised-button (click)="importFilesButton.click()">Add a photo</button>
+        <input hidden type="file" multiple #importFilesButton (change)="importFiles($event)" />
+        <br>
+        <input matInput placeholder="Simple placeholder" required>
+    </mat-form-field>
+
+</div>

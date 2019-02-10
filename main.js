@@ -6,7 +6,6 @@ const {
   dialog,
   ipcMain,
 } = require('electron');
-require('electron-reload')(__dirname);
 const { resolve } = require('app-root-path');
 const { ArrayType } = require('@angular/compiler');
 const Store = require('electron-store');
@@ -14,7 +13,8 @@ const fs = require('fs-extra');
 const nanoid = require('nanoid');
 const path = require('path');
 const url = require('url');
-
+var sanitize = require("sanitize-filename");
+const unusedFilename = require('unused-filename');
 
 // Config stuff
 const config = new Store();
@@ -36,28 +36,26 @@ if (configRoot.clips === undefined) {
 
 
 
-function saveFile(source) {
-  if (source && source.length > 0) {
-    source.forEach(singlePath => new Promise((() => {
-      const uid = nanoid(8);
-      const fileName = path.basename(singlePath);
-      const ext = path.extname(singlePath);
-      const fileNameNoExt = fileName.substring(0, fileName.lastIndexOf('.'));
-      const newPath = `${audioPath}/${uid}${ext}`;
-      const rd = fs.createReadStream(singlePath);
-      const wr = fs.createWriteStream(newPath);
-      const element = {
-        name: fileNameNoExt,
-        path: newPath,
-        rate: 1.00,
-        uid,
-        volume: 1.00,
-      };
-      configRoot.clips.push(element);
-      if (rd.pipe(wr)) {
-        config.set(configRoot);
-      }
-    })));
+function saveFiles(filePath) {
+  if (filePath && filePath.length > 0) {
+    const uid = nanoid(8);
+    const fileName = path.basename(filePath);
+    // const ext = path.extname(filePath);
+    const fileNameNoExt = sanitize(fileName.substring(0, fileName.lastIndexOf('.')));
+    const newPath = unusedFilename.sync(`${audioPath}/${fileName}`)
+    const rd = fs.createReadStream(filePath);
+    const wr = fs.createWriteStream(newPath);
+    const element = {
+      name: fileNameNoExt,
+      path: newPath,
+      rate: 1.00,
+      uid,
+      volume: 1.00,
+    };
+    configRoot.clips.push(element);
+    if (rd.pipe(wr)) {
+      config.set(configRoot);
+    }
   }
 }
 
@@ -121,8 +119,8 @@ app.on('ready', () => {
     config.set(configRoot);
   });
 
-  ipcMain.on('saveFile', (event, arg) => {
-    saveFile(arg);
+  ipcMain.on('saveFiles', (event, arg) => {
+    saveFiles(arg);
   });
 
   ipcMain.on('importFile', () => {

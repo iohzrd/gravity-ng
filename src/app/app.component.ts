@@ -29,4 +29,8 @@ export class AppComponent {
     );
     this.electronService.ipcRenderer.send('saveConfig', { 'clips': this.clips });
   }
+
+  public importFiles(event) {
+    console.log(event);
+  }
 }

@@ -5,15 +5,22 @@
       <span>{{ title }}</span>
       <app-import-clip></app-import-clip>
       <!-- <button mat-raised-button (click)="openImportClip()">Import clip</button> -->
+
+      <mat-form-field class="search">
+        <input matInput [(ngModel)]="searchText" placeholder="Search">
+      </mat-form-field>
+
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div cdkDropList *ngIf="clips" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="32px" fxLayoutAlign="flex-start"
-    (cdkDropListDropped)=dropped($event)>
-    <ng-container *ngFor="let clip of clips">
-      <app-clip [clip]="clip" fxFlex="0 1 calc(33.3% - 32px)" fxFlex.lt-md="0 1 calc(50% - 32px)" fxFlex.lt-sm="100%"
-        cdkDrag></app-clip>
-    </ng-container>
+  <div cdkDropList (cdkDropListDropped)=dropped($event) fxLayout="row wrap" fxLayout.lt-sm="column"
+    fxLayoutAlign="flex-start">
+    <div *ngIf="clips">
+      <div *ngFor="let clip of clips | filter: {name: searchText};" cdkDrag fxFlex="0 1 calc(33.3% - 32px)">
+        <div *cdkDragPlaceholder></div>
+        <app-clip [clip]="clip"></app-clip>
+      </div>
+    </div>
   </div>
 
 </div>

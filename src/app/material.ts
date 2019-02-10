@@ -13,8 +13,8 @@ import {
     MatProgressBarModule,
     MatSliderModule,
     MatToolbarModule,
+    MatRadioModule
 } from '@angular/material';
-
 @NgModule({
     imports: [
         MatBottomSheetModule,
@@ -28,6 +28,7 @@ import {
         MatInputModule,
         MatListModule,
         MatProgressBarModule,
+        MatRadioModule,
         MatSliderModule,
         MatToolbarModule,
     ],
@@ -43,6 +44,7 @@ import {
         MatInputModule,
         MatListModule,
         MatProgressBarModule,
+        MatRadioModule,
         MatSliderModule,
         MatToolbarModule,
     ],
