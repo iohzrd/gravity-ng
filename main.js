@@ -7,14 +7,15 @@ const {
   ipcMain,
 } = require('electron');
 const { resolve } = require('app-root-path');
-const { ArrayType } = require('@angular/compiler');
 const Store = require('electron-store');
 const fs = require('fs-extra');
 const nanoid = require('nanoid');
 const path = require('path');
-const url = require('url');
-var sanitize = require("sanitize-filename");
+const sanitize = require("sanitize-filename");
 const unusedFilename = require('unused-filename');
+const fluent = require('fluent-ffmpeg');
+const ffmpeg = require('ffmpeg-static');
+console.log(ffmpeg.path);
 
 // Config stuff
 const config = new Store();
@@ -55,6 +56,7 @@ function saveFiles(filePath) {
     configRoot.clips.push(element);
     if (rd.pipe(wr)) {
       config.set(configRoot);
+      win.webContents.send('config', configRoot);
     }
   }
 }
